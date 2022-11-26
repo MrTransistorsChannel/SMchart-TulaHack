@@ -29,7 +29,8 @@ app.get('/diagram', function(req, res){
 });
 
 app.use((req, res) => {
-    res.status(404).sendFile(__dirname + "/web/404.html");
+    const title = 'Ошибка 404';
+    res.render(createPath('404'), { title });
 });
 
 app.listen(80);

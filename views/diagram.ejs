@@ -59,11 +59,11 @@
     <li><a id="js-download-svg" href title="download as SVG image">SVG изображение</a></li>
   </ul>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
        <div class="modal-header">
-        <h5 class="modal-title" id="nick_name">Имя:</h5>
+        <h5 class="modal-title" id="nick_name">Авторизация</h5>
        </div>
        <div class="modal-body">
         <form>
@@ -74,17 +74,33 @@
         </form>
        </div>
        <div class="modal-footer">
-        <button type="button" id="login" class="btn btn-primary" data-dismiss="modal">Войти</button>
+        <button type="button" id="login" class="btn btn-primary" >Войти</button>
        </div>
       </div>
     </div>
    </div>
    <script>
-    $('#exampleModal').modal("show")
+	
+	 var results = document.cookie.match(/user=(.+?)(;|$)/);
+	 let check = !results[1].length>3;
+	 console.log(check);
+	 if(check){
+		$('#exampleModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    })
+		$('#exampleModal').modal("show")
     $("#login").click(function() {
-			$.post("http://tulavcube.ru:25880/login", { element: $('#nickname').val() });
-			console.log($('#nickname').val());
+		if($('#nickname').val().length > 3){
+			$.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });		
+			document.cookie = "user="+$('#nickname').val(); 
+			$('#exampleModal').modal('hide')
+
+		}
     });
+	 }
+
+
   </script>
   <script src="js/modeler.js"></script>
   

@@ -4,17 +4,19 @@
         <%- include('./partials/head.ejs') %>
         <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="bpmn-css/bpmn-js.css">
-        <link rel="stylesheet" type="text/css" href="bpmn-css/diagram-js.css">
-        <link rel="stylesheet" type="text/css" href="bpmn-css/bpmn-font/css/bpmn.css">
-        <link rel="stylesheet" type="text/css" href="css/diagram.css">
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-js.css">
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/diagram-js.css">
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-font/css/bpmn.css">
+        <link rel="stylesheet" type="text/css" href="css/modeler.css">
 
         <!-- modeler distro -->
         <script src="https://unpkg.com/bpmn-js@11.0.1/dist/bpmn-modeler.development.js"></script>
     </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid test">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,119 +53,61 @@
           </ul>
         </div>
       </nav>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    </div>
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <button type="button" class="nav-link" id="back_actions" href="/">
-                    <img src="img/redo_icon.svg" height="30px" alt="">
-                </button>
-            </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link disabled" id="back_actions" href="/">
+                <img src="img/undo_icon.svg" height="20px" alt="">
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link disabled" id="undo_actions" href="/">
+              <img src="img/redo_icon.svg" height="20px" alt="">
+            </button>
+          </li>
         </ul>
       </nav>
-      <div id="canvas"></div>
+    </div>
+  </div>
+  <div class="content" id="js-drop-zone">
 
-      <script>
+    <div class="message intro">
+      <div class="note">
+        Drop BPMN diagram from your desktop or <a id="js-create-diagram" href>create a new diagram</a> to get started.
+      </div>
+    </div>
 
-        var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
-  
-        // modeler instance
-        var bpmnModeler = new BpmnJS({
-          container: '#canvas',
-          keyboard: {
-            bindTo: window
-          }
-        });
-  
-        /**
-         * Save diagram contents and print them to the console.
-         */
-        async function exportDiagram() {
-  
-          try {
-  
-            var result = await bpmnModeler.saveXML({ format: true });
-  
-            alert('Diagram exported. Check the developer tools!');
-  
-            console.log('DIAGRAM', result.xml);
-          } catch (err) {
-  
-            console.error('could not save BPMN 2.0 diagram', err);
-          }
-        }
-  
-        /**
-         * Open diagram in our modeler instance.
-         *
-         * @param {String} bpmnXML diagram to display
-         */
-        async function openDiagram(bpmnXML) {
-  
-          // import diagram
-          try {
-  
-            await bpmnModeler.importXML(bpmnXML);
-  
-            // access modeler components
-            var canvas = bpmnModeler.get('canvas');
-            var overlays = bpmnModeler.get('overlays');
-  
-  
-            // zoom to fit full viewport
-            canvas.zoom('fit-viewport');
-  
-            // attach an overlay to a node
-            overlays.add('SCAN_OK', 'note', {
-              position: {
-                bottom: 0,
-                right: 0
-              },
-              html: '<div class="diagram-note">Mixed up the labels?</div>'
-            });
-  
-            // add marker
-            canvas.addMarker('SCAN_OK', 'needs-discussion');
-          } catch (err) {
-  
-            console.error('could not import BPMN 2.0 diagram', err);
-          }
-        }
-  
-  
-        // load external diagram file via AJAX and open it
-        $.get(diagramUrl, openDiagram, 'text');
-  
-        // wire save button
-        $('#save-button').click(exportDiagram);
-		  const myPics = document.getElementById('canvas');
-		  const back_actions = document.getElementById('back_actions');
+    <div class="message error">
+      <div class="note">
+        <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
 
-		  myPics.addEventListener('mousemove', (e) => {
-	const now = new Date();
-	x = e.offsetX;
-	y = e.offsetY;
-	isDrawing = true;
+        <div class="details">
+          <span>cause of the problem</span>
+          <pre></pre>
+        </div>
+      </div>
+    </div>
 
-	console.log(x+" "+y)
-	//$.post( "test.php", { cordX: x, cordY: y } );
-	return false;
-});
-/*
-back_actions.addEventListener('click', (e) => {
-	myPics.execCommand("undo", false, null);
+    <div class="canvas" id="js-canvas"></div>
+  </div>
 
-
-});
-
-function doUndo() {
-    document.execCommand('undo', false, null);
-}
-
-function doRedo() {
-    document.execCommand('redo', false, null);
-}*/
-
-back_actions.addEventListener("click", doUndo, false);
-      </script>
+  <ul class="buttons">
+    <li>
+      download
+    </li>
+    <li>
+      <a id="js-download-diagram" href title="download BPMN diagram">
+        BPMN diagram
+      </a>
+    </li>
+    <li>
+      <a id="js-download-svg" href title="download as SVG image">
+        SVG image
+      </a>
+    </li>
+  </ul>
+  <script src="js/modeler.js"></script>
 </body>
 </html>

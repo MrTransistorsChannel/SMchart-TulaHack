@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/img', express.static('web/img'));
 app.use('/css', express.static('web/css'));
-app.use('/bpmn-css', express.static('node_modules/bpmn-js/dist/assets'));
 app.use('/js', express.static('web/js'));
+app.use('/build', express.static('node_modules'));
 
 app.get('/', function(req, res) {
     const title = 'Главная';

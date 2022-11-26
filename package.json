@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/MrTransistorsChannel/SMchart-TulaHack#readme",
   "dependencies": {
-    "bpmn-js": "^11.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "mariadb": "^3.0.2"

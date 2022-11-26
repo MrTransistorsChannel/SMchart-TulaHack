@@ -2,69 +2,30 @@
 <html lang="en">
     <head>
         <%- include('./partials/head.ejs') %>
-        <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-
         <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-js.css">
         <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/diagram-js.css">
         <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-font/css/bpmn.css">
         <link rel="stylesheet" type="text/css" href="css/modeler.css">
-
-        <!-- modeler distro -->
-        <script src="https://unpkg.com/bpmn-js@11.0.1/dist/bpmn-modeler.development.js"></script>
     </head>
 
 <body>
   <div class="container-fluid test">
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Главная</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Файл
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <button type="button" class="dropdown-item" href="#">Создать</button>
-                <button type="button" class="dropdown-item" href="#">Открыть</button>
-                <button type="button" class="dropdown-item" href="#">Сохранить</button>
-                <div class="dropdown-divider"></div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Редактировать
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <button type="button" class="dropdown-item" href="#">Undo</button>
-                  <button type="button" class="dropdown-item" href="#">Redo</button>
-                  <div class="dropdown-divider"></div>
-                  <button type="button" class="dropdown-item" href="#">Вырезать</button>
-                  <button type="button" class="dropdown-item" href="#">Копировать</button>
-                  <button type="button" class="dropdown-item" href="#">Вставить</button>
-                </div>
-              </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="row">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
+            <a class="navbar-brand" href="/">
+              <img src="img/logo.svg" height="30px" alt="Gravity" class="logo">
+            </a>
+          </li>
+          <li class="nav-item">
             <button type="button" class="nav-link disabled" id="back_actions" href="/">
-                <img src="img/undo_icon.svg" height="20px" alt="">
+                <img src="img/undo_icon.svg" height="30px" alt="">
             </button>
           </li>
           <li class="nav-item">
             <button type="button" class="nav-link disabled" id="undo_actions" href="/">
-              <img src="img/redo_icon.svg" height="20px" alt="">
+              <img src="img/redo_icon.svg" height="30px" alt="">
             </button>
           </li>
         </ul>
@@ -75,38 +36,26 @@
 
     <div class="message intro">
       <div class="note">
-        Drop BPMN diagram from your desktop or <a id="js-create-diagram" href>create a new diagram</a> to get started.
+        Перенесите BPMN диаграмму с рабочего стола или <a id="js-create-diagram" href>создайте новую</a> для продолжния.
       </div>
     </div>
 
     <div class="message error">
       <div class="note">
-        <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
-
+        <p>Упс, невозможно отобразить BPMN 2.0 диаграмму.</p>
         <div class="details">
           <span>cause of the problem</span>
           <pre></pre>
         </div>
       </div>
     </div>
-
     <div class="canvas" id="js-canvas"></div>
   </div>
 
   <ul class="buttons">
-    <li>
-      download
-    </li>
-    <li>
-      <a id="js-download-diagram" href title="download BPMN diagram">
-        BPMN diagram
-      </a>
-    </li>
-    <li>
-      <a id="js-download-svg" href title="download as SVG image">
-        SVG image
-      </a>
-    </li>
+    <li>Скачать</li>
+    <li><a id="js-download-diagram" href title="download BPMN diagram">BPMN диаграмма</a></li>
+    <li><a id="js-download-svg" href title="download as SVG image">SVG изображение</a></li>
   </ul>
   <script src="js/modeler.js"></script>
 </body>

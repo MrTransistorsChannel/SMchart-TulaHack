@@ -5,7 +5,7 @@ const pool = mariadb.createPool({
     host: 'remotemysql.com',
     user: 'xxFhi3fR3w',
     password: 'ASTO8UWANW',
-    connectionLimit: 5
+    connectionLimit: 1
 });
 
 var app = express();

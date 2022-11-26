@@ -1,17 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head.ejs') %>
+    <head>
+        <%- include('./partials/head.ejs') %>
+        <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/bpmn-js@11.0.1/dist/assets/bpmn-js.css">
+        <link rel="stylesheet" href="https://unpkg.com/bpmn-js@11.0.1/dist/assets/diagram-js.css">
+        <link rel="stylesheet" href="https://unpkg.com/bpmn-js@11.0.1/dist/assets/bpmn-font/css/bpmn.css">
+
+        <!-- modeler distro -->
+        <script src="https://unpkg.com/bpmn-js@11.0.1/dist/bpmn-modeler.development.js"></script>
+        <style>
+            html, body, #canvas {
+              height: 100%;
+              padding: 0;
+              margin: 0;
+            }
+      
+            .diagram-note {
+              background-color: rgba(66, 180, 21, 0.7);
+              color: White;
+              border-radius: 5px;
+              font-family: Arial;
+              font-size: 12px;
+              padding: 5px;
+              min-height: 16px;
+              width: 50px;
+              text-align: center;
+            }
+      
+            .needs-discussion:not(.djs-connection) .djs-visual > :nth-child(1) {
+              stroke: rgba(66, 180, 21, 0.7) !important; /* color elements as red */
+            }
+      
+            #save-button {
+              position: fixed;
+              bottom: 20px;
+              left: 20px;
+            }
+          </style>
+    </head>
+
 <body>
-    <menu type="toolbar">
-        <li>
-            <menu label="Файл">
-                <menu label="Открыть">
-                    <button type="button">Новый...</button>
-                    <button type="button">Открыть...</button>
-                    <button type="button">Сохранить</button>
-                </menu>
-            </menu>
-        </li>
-    </menu>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Главная</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Файл
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <button type="button" class="dropdown-item" href="#">Создать</button>
+                <button type="button" class="dropdown-item" href="#">Открыть</button>
+                <button type="button" class="dropdown-item" href="#">Сохранить</button>
+                <div class="dropdown-divider"></div>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Редактировать
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <button type="button" class="dropdown-item" href="#">Undo</button>
+                  <button type="button" class="dropdown-item" href="#">Redo</button>
+                  <div class="dropdown-divider"></div>
+                  <button type="button" class="dropdown-item" href="#">Вырезать</button>
+                  <button type="button" class="dropdown-item" href="#">Копировать</button>
+                  <button type="button" class="dropdown-item" href="#">Вставить</button>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <button type="button" class="nav-link" href="/">
+                    <img src="img/redo_icon.svg" height="30px" alt="">
+                </button>
+            </li>
+        </ul>
+      </nav>
+      <div id="canvas"></div>
+
+      <script>
+
+        var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
+  
+        // modeler instance
+        var bpmnModeler = new BpmnJS({
+          container: '#canvas',
+          keyboard: {
+            bindTo: window
+          }
+        });
+  
+        /**
+         * Save diagram contents and print them to the console.
+         */
+        async function exportDiagram() {
+  
+          try {
+  
+            var result = await bpmnModeler.saveXML({ format: true });
+  
+            alert('Diagram exported. Check the developer tools!');
+  
+            console.log('DIAGRAM', result.xml);
+          } catch (err) {
+  
+            console.error('could not save BPMN 2.0 diagram', err);
+          }
+        }
+  
+        /**
+         * Open diagram in our modeler instance.
+         *
+         * @param {String} bpmnXML diagram to display
+         */
+        async function openDiagram(bpmnXML) {
+  
+          // import diagram
+          try {
+  
+            await bpmnModeler.importXML(bpmnXML);
+  
+            // access modeler components
+            var canvas = bpmnModeler.get('canvas');
+            var overlays = bpmnModeler.get('overlays');
+  
+  
+            // zoom to fit full viewport
+            canvas.zoom('fit-viewport');
+  
+            // attach an overlay to a node
+            overlays.add('SCAN_OK', 'note', {
+              position: {
+                bottom: 0,
+                right: 0
+              },
+              html: '<div class="diagram-note">Mixed up the labels?</div>'
+            });
+  
+            // add marker
+            canvas.addMarker('SCAN_OK', 'needs-discussion');
+          } catch (err) {
+  
+            console.error('could not import BPMN 2.0 diagram', err);
+          }
+        }
+  
+  
+        // load external diagram file via AJAX and open it
+        $.get(diagramUrl, openDiagram, 'text');
+  
+        // wire save button
+        $('#save-button').click(exportDiagram);
+      </script>
 </body>
 </html>

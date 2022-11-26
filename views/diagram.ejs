@@ -18,7 +18,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -65,7 +65,7 @@
       <script>
 
         var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
-  
+
         // modeler instance
         var bpmnModeler = new BpmnJS({
           container: '#canvas',
@@ -73,45 +73,45 @@
             bindTo: window
           }
         });
-  
+
         /**
          * Save diagram contents and print them to the console.
          */
         async function exportDiagram() {
-  
+
           try {
-  
+
             var result = await bpmnModeler.saveXML({ format: true });
-  
+
             alert('Diagram exported. Check the developer tools!');
-  
+
             console.log('DIAGRAM', result.xml);
           } catch (err) {
-  
+
             console.error('could not save BPMN 2.0 diagram', err);
           }
         }
-  
+
         /**
          * Open diagram in our modeler instance.
          *
          * @param {String} bpmnXML diagram to display
          */
         async function openDiagram(bpmnXML) {
-  
+
           // import diagram
           try {
-  
+
             await bpmnModeler.importXML(bpmnXML);
-  
+
             // access modeler components
             var canvas = bpmnModeler.get('canvas');
             var overlays = bpmnModeler.get('overlays');
-  
-  
+
+
             // zoom to fit full viewport
             canvas.zoom('fit-viewport');
-  
+
             // attach an overlay to a node
             overlays.add('SCAN_OK', 'note', {
               position: {
@@ -120,19 +120,19 @@
               },
               html: '<div class="diagram-note">Mixed up the labels?</div>'
             });
-  
+
             // add marker
             canvas.addMarker('SCAN_OK', 'needs-discussion');
           } catch (err) {
-  
+
             console.error('could not import BPMN 2.0 diagram', err);
           }
         }
-  
-  
+
+
         // load external diagram file via AJAX and open it
         $.get(diagramUrl, openDiagram, 'text');
-  
+
         // wire save button
         $('#save-button').click(exportDiagram);
 		  const myPics = document.getElementById('canvas');
@@ -167,8 +167,10 @@ bpmnModeler.on('commandStack.changed', () => {
 });
 
 bpmnModeler.on('element.changed', (event) => {
-	const element = event.element;
-		//$.post( "test.php", { element: element } );
+	//const element = event.element;
+		$.post( "tulavcube.ru:25880/element_changed", { element: "asdfasdff" } );
+		console.log("sdfasfsaf");
+    return false;
 
 //	this.modeler.get('modeling').updateProperties(this.modeler.get('elementRegistry').get(element.id), {name: element.businessObject.name});
 

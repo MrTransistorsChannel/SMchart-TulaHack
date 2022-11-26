@@ -1,5 +1,17 @@
-*{
+button{
 	outline: none !important;
+	-webkit-appearance: none;
+
+}
+button:focus {
+	-webkit-appearance: none;
+}
+
+button:hover {
+	-webkit-appearance: none;
+}
+.owl-theme .owl-nav [class*=owl-]:hover{
+	background: none !important;
 }
 body {
 	font-family: 'Fira Sans', sans-serif;
@@ -72,12 +84,12 @@ h3 {
 }
 
 .nav {
-	padding-top: 59px;
+	padding-top: 30px;
 	margin-bottom: 127px;
 }
 
 .logo {
-
+	border-radius: 0;
 }
 
 .search {
@@ -141,7 +153,7 @@ h3 {
 }
 
 .problems {
-	padding-top: 180px;
+	padding-top: 90px;
 }
 
 .about {
@@ -402,7 +414,7 @@ transform: scale(1.1);
 
 
 .clients {
-	padding-top: 278px;
+	padding-top: 100px;
 	margin-bottom: 100px;
 }
 

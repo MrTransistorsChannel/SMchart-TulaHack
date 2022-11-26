@@ -81,7 +81,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <button type="button" class="nav-link" href="/">
+                <button type="button" class="nav-link" id="back_actions" href="/">
                     <img src="img/redo_icon.svg" height="30px" alt="">
                 </button>
             </li>
@@ -162,6 +162,35 @@
   
         // wire save button
         $('#save-button').click(exportDiagram);
+		  const myPics = document.getElementById('canvas');
+		  const back_actions = document.getElementById('back_actions');
+
+		  myPics.addEventListener('mousemove', (e) => {
+	const now = new Date();
+	x = e.offsetX;
+	y = e.offsetY;
+	isDrawing = true;
+
+	console.log(x+" "+y)
+	//$.post( "test.php", { cordX: x, cordY: y } );
+	return false;
+});
+/*
+back_actions.addEventListener('click', (e) => {
+	myPics.execCommand("undo", false, null);
+
+
+});
+
+function doUndo() {
+    document.execCommand('undo', false, null);
+}
+
+function doRedo() {
+    document.execCommand('redo', false, null);
+}*/
+
+back_actions.addEventListener("click", doUndo, false);
       </script>
 </body>
 </html>

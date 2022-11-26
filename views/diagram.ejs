@@ -144,7 +144,6 @@
 	y = e.offsetY;
 	isDrawing = true;
 
-	console.log(x+" "+y)
 	//$.post( "test.php", { cordX: x, cordY: y } );
 	return false;
 });
@@ -163,7 +162,22 @@ function doRedo() {
     document.execCommand('redo', false, null);
 }*/
 
-back_actions.addEventListener("click", doUndo, false);
+bpmnModeler.on('commandStack.changed', () => {
+
+});
+
+bpmnModeler.on('element.changed', (event) => {
+	const element = event.element;
+		//$.post( "test.php", { element: element } );
+
+//	this.modeler.get('modeling').updateProperties(this.modeler.get('elementRegistry').get(element.id), {name: element.businessObject.name});
+
+});
+
+
+// ensure the dependency names are still available after minification
+
+//back_actions.addEventListener("click", doUndo, false);
       </script>
 </body>
 </html>

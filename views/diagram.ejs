@@ -2,211 +2,91 @@
 <html lang="en">
     <head>
         <%- include('./partials/head.ejs') %>
-		  
-        <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-
-        <link rel="stylesheet" type="text/css" href="bpmn-css/bpmn-js.css">
-        <link rel="stylesheet" type="text/css" href="bpmn-css/diagram-js.css">
-        <link rel="stylesheet" type="text/css" href="bpmn-css/bpmn-font/css/bpmn.css">
-        <link rel="stylesheet" type="text/css" href="css/diagram.css">
-		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-        <!-- modeler distro -->
-        <script src="https://unpkg.com/bpmn-js@11.0.1/dist/bpmn-modeler.development.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-js.css">
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/diagram-js.css">
+        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-font/css/bpmn.css">
+        <link rel="stylesheet" type="text/css" href="css/modeler.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </head>
 
-	 <body class="modal-open" style="padding-right: 17px;">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Главная</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Файл
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <button type="button" class="dropdown-item" href="#">Создать</button>
-                <button type="button" class="dropdown-item" href="#">Открыть</button>
-                <button type="button" class="dropdown-item" href="#">Сохранить</button>
-                <div class="dropdown-divider"></div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Редактировать
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <button type="button" class="dropdown-item" href="#">Undo</button>
-                  <button type="button" class="dropdown-item" href="#">Redo</button>
-                  <div class="dropdown-divider"></div>
-                  <button type="button" class="dropdown-item" href="#">Вырезать</button>
-                  <button type="button" class="dropdown-item" href="#">Копировать</button>
-                  <button type="button" class="dropdown-item" href="#">Вставить</button>
-                </div>
-              </li>
-          </ul>
-        </div>
-      </nav>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body class="modal-open" style="padding-right: 17px;">
+  <div class="container-fluid test">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <button type="button" class="nav-link" id="back_actions" href="/">
-                    <img src="img/redo_icon.svg" height="30px" alt="">
-                </button>
-            </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="/">
+              <img src="img/logo.svg" height="30px" alt="Gravity" class="logo">
+            </a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link disabled" id="back_actions" href="/">
+                <img src="img/undo_icon.svg" height="30px" alt="">
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link disabled" id="undo_actions" href="/">
+              <img src="img/redo_icon.svg" height="30px" alt="">
+            </button>
+          </li>
         </ul>
       </nav>
-      <div id="canvas"></div>
-		
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-			  <div class="modal-content">
-				 <div class="modal-header">
-					<h5 class="modal-title" id="nick_name">Имя:</h5>
-				 </div>
-				 <div class="modal-body">
-					<form>
-					  <div class="form-group">
-						 <label for="recipient-name" class="col-form-label">Имя:</label>
-						 <input type="text" class="form-control" id="nickname">
-					  </div>
-					</form>
-				 </div>
-				 <div class="modal-footer">
-					<button type="button" id="login" class="btn btn-primary" data-dismiss="modal">Войти</button>
-				 </div>
-			  </div>
-			</div>
-		 </div>
-      <script>
-$('#exampleModal').modal('show')
+    </div>
+  </div>
+  <div class="content" id="js-drop-zone">
 
-        var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
+    <div class="message intro">
+      <div class="note">
+        Перенесите BPMN диаграмму с рабочего стола или <a id="js-create-diagram" href>создайте новую</a> для продолжения.
+      </div>
+    </div>
 
-        // modeler instance
-        var bpmnModeler = new BpmnJS({
-          container: '#canvas',
-          keyboard: {
-            bindTo: window
-          }
-        });
-		  
-		  $( "#login" ).click(function() {
-			$.post( "http://tulavcube.ru:25880/login", { element: $("#nickname").val()} );
-			console.log($("#nickname").val());
-});
-        /**
-         * Save diagram contents and print them to the console.
-         */
-        async function exportDiagram() {
+    <div class="message error">
+      <div class="note">
+        <p>Упс, невозможно отобразить BPMN 2.0 диаграмму.</p>
+        <div class="details">
+          <span>cause of the problem</span>
+          <pre></pre>
+        </div>
+      </div>
+    </div>
+    <div class="canvas" id="js-canvas"></div>
+  </div>
 
-          try {
+  <ul class="buttons">
+    <li>Скачать</li>
+    <li><a id="js-download-diagram" href title="download BPMN diagram">BPMN диаграмма</a></li>
+    <li><a id="js-download-svg" href title="download as SVG image">SVG изображение</a></li>
+  </ul>
 
-            var result = await bpmnModeler.saveXML({ format: true });
-
-            alert('Diagram exported. Check the developer tools!');
-
-            console.log('DIAGRAM', result.xml);
-          } catch (err) {
-
-            console.error('could not save BPMN 2.0 diagram', err);
-          }
-        }
-
-        /**
-         * Open diagram in our modeler instance.
-         *
-         * @param {String} bpmnXML diagram to display
-         */
-        async function openDiagram(bpmnXML) {
-
-          // import diagram
-          try {
-
-            await bpmnModeler.importXML(bpmnXML);
-
-            // access modeler components
-            var canvas = bpmnModeler.get('canvas');
-            var overlays = bpmnModeler.get('overlays');
-
-
-            // zoom to fit full viewport
-            canvas.zoom('fit-viewport');
-
-            // attach an overlay to a node
-            overlays.add('SCAN_OK', 'note', {
-              position: {
-                bottom: 0,
-                right: 0
-              },
-              html: '<div class="diagram-note">Mixed up the labels?</div>'
-            });
-
-            // add marker
-            canvas.addMarker('SCAN_OK', 'needs-discussion');
-          } catch (err) {
-
-            console.error('could not import BPMN 2.0 diagram', err);
-          }
-        }
-
-
-        // load external diagram file via AJAX and open it
-        $.get(diagramUrl, openDiagram, 'text');
-
-        // wire save button
-        $('#save-button').click(exportDiagram);
-		  const myPics = document.getElementById('canvas');
-		  const back_actions = document.getElementById('back_actions');
-
-		  myPics.addEventListener('mousemove', (e) => {
-	const now = new Date();
-	x = e.offsetX;
-	y = e.offsetY;
-	isDrawing = true;
-
-	//$.post( "test.php", { cordX: x, cordY: y } );
-	return false;
-});
-/*
-back_actions.addEventListener('click', (e) => {
-	myPics.execCommand("undo", false, null);
-
-
-});
-
-function doUndo() {
-    document.execCommand('undo', false, null);
-}
-
-function doRedo() {
-    document.execCommand('redo', false, null);
-}*/
-
-bpmnModeler.on('commandStack.changed', () => {
-
-});
-
-bpmnModeler.on('element.changed', (event) => {
-	const element = event.element;
-		$.post( "http://tulavcube.ru:25880/element_changed", { element: JSON.stringify(event.element)} );
-		console.log(element);
-    return false;
-
-//	this.modeler.get('modeling').updateProperties(this.modeler.get('elementRegistry').get(element.id), {name: element.businessObject.name});
-
-});
-
-
-// ensure the dependency names are still available after minification
-
-//back_actions.addEventListener("click", doUndo, false);
-      </script>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="nick_name">Имя:</h5>
+       </div>
+       <div class="modal-body">
+        <form>
+          <div class="form-group">
+           <label for="recipient-name" class="col-form-label">Имя:</label>
+           <input type="text" class="form-control" id="nickname">
+          </div>
+        </form>
+       </div>
+       <div class="modal-footer">
+        <button type="button" id="login" class="btn btn-primary" data-dismiss="modal">Войти</button>
+       </div>
+      </div>
+    </div>
+   </div>
+   <script>
+    $('#exampleModal').modal("show")
+    $("#login").click(function() {
+			$.post("http://tulavcube.ru:25880/login", { element: $('#nickname').val() });
+			console.log($('#nickname').val());
+    });
+  </script>
+  <script src="js/modeler.js"></script>
+  
 </body>
 </html>

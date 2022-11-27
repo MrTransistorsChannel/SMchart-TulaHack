@@ -8,8 +8,9 @@ Based on [bpmn-js](https://bpmn.io/toolkit/bpmn-js/) - an open source diagrammin
 * [`backend-server`](https://github.com/MrTransistorsChannel/SMchart-TulaHack/tree/backend-server) - Back-end server
 
 ### Online demo
-This app can be tested online at http://fun-x.ru:8081
-There`s a test user available with this credentials
+This app can be tested online at http://fun-x.ru:8081 <br>
+![изображение](https://user-images.githubusercontent.com/34776474/204129851-467e0520-4f1a-494f-8cbe-60e8966ebb68.png) <br>
+There's a test user available with this credentials
 ```
   Username: 1
   Password: 1

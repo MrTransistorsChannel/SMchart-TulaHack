@@ -464,11 +464,11 @@
 	<script src="js/main.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
-			$.get("http://tulavcube.ru:25880/login", { chek:"" });
+			$.get("http://tulavcube.ru:25880/login", { check:"", credentials: 'same-origin' });
 			return false;
 });
 $('#login_btn').click(function() {
-		$.post("http://tulavcube.ru:25880/login", { username:$("#recipient-name").val(), password:$("#message-text").val() });
+		$.post("http://tulavcube.ru:25880/login", { username:$("#recipient-name").val(), password:$("#message-text").val(), credentials: 'same-origin' });
 
 		return false;
 });	

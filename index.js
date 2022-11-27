@@ -1,5 +1,7 @@
 var express = require('express');
 const path = require('path');
+var morgan = require('morgan')
+
 
 //const mariadb = require('mariadb');
 //const pool = mariadb.createPool({
@@ -14,6 +16,7 @@ const createPath = (page) => path.resolve(__dirname, 'views', `${page}.ejs`)
 
 app.set('view engine', 'ejs');
 
+app.use(morgan('tiny'));
 app.use(express.json());
 app.use('/img', express.static('web/img'));
 app.use('/css', express.static('web/css'));

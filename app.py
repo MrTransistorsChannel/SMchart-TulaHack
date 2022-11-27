@@ -25,7 +25,7 @@ class User:
         # Test storage for users and their diagrams, was planned to be inside SQL database
 
 
-users = [User(username='1', password='1', diagrams=['notSoAwesomeDiagram', 'awesomeDiagram', 'multiple']),
+users = [User(username='1', password='1', diagrams=['multiple']),
          User(username='badrequest', password='password'),
          User(username='lyagush0n0k', password='password')]
 

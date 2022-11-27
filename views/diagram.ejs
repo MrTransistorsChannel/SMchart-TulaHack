@@ -148,7 +148,15 @@
 
       });
 	function getDiagram(id){
-		$.get( "http://tulavcube.ru:25880/diagrams", { name: id  } );
+		//$.get( "http://tulavcube.ru:25880/diagrams", { name: id  } );
+		$.ajax({
+  method: "GET",
+  url: "http://tulavcube.ru:25880/diagrams",
+  data: { name: id  },
+	})
+  .done(function( msg ) {
+	console.log(msg)
+  });
 		return false;
 
 	}

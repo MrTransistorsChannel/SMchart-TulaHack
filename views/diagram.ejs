@@ -148,7 +148,8 @@
 
       });
 	function getDiagram(id){
-				$.ajax({
+		//$.get( "http://tulavcube.ru:25880/diagrams", { name: id  } );
+		$.ajax({
   method: "GET",
   url: "http://tulavcube.ru:25880/diagrams",
   data: { name: id  },
@@ -158,7 +159,6 @@
   });
 		return false;
 
-	}
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
 
     var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');

@@ -63,7 +63,7 @@
     <li><a id="js-download-svg" class="btn btn-primary" href title="Скачать как SVG">SVG изображение</a></li>
   </ul>
 
-  <div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="login-modal" tabindex="0" aria-labelledby="login-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
        <div class="modal-header">
@@ -85,26 +85,25 @@
    </div>
    <script>
 	
+	/*
 	 var results = document.cookie.match(/user=(.+?)(;|$)/);
-	 let check = !results[1].length>3;
-	 console.log(check);
-	 if(check){
-		$('#exampleModal').modal({
+	 let check = results[1].length  == 0;
+	 $('#login-modal').modal({
       backdrop: 'static',
       keyboard: false
     })
-		$('#exampleModal').modal("show")
-    $("#login").click(function() {
-		if($('#nickname').val().length > 3){
-			$.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });		
-			document.cookie = "user="+$('#nickname').val(); 
-			$('#exampleModal').modal('hide')
+	 if(check == true){
 
-		}
-    });
+	
+		$('#login-modal').modal("show")
+		$("#login").click(function() {
+				$.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });
+				document.cookie = "user="+$('#nickname').val(); 
+
+		});
 	 }
 
-
+*/
   </script>
   <script src="js/modeler.js"></script>
   

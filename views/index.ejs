@@ -13,12 +13,12 @@
 					</div>
 			
 					<div class="login-header">
-						<a type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+						<a  href="" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 							Войти
 						</a>
-						<a href="" type="button" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
+						<!---<a href="" type="button" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
 							Зарегистрироваться
-						</a>
+						</a>-->
 					</div>
 				</div>
 			</div>
@@ -417,7 +417,7 @@
 			 <div class="modal-body">
 				<form>
 				  <div class="form-group">
-					 <label for="recipient-name" class="col-form-label">Email:</label>
+					 <label for="recipient-name" class="col-form-label">Логин:</label>
 					 <input type="text" class="form-control" id="recipient-name">
 				  </div>
 				  <div class="form-group">
@@ -428,11 +428,11 @@
 			 </div>
 			 <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-primary">Войти</button>
+				<button type="button" class="btn btn-primary" id="login_btn">Войти</button>
 			 </div>
 		  </div>
 		</div>
-	 </div>
+	 </div><!--
 	 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
@@ -457,12 +457,22 @@
 			 </div>
 		  </div>
 		</div>
-	 </div>
-
+	 </div>-->
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			$.get("http://tulavcube.ru:25880/login", { chek:"" });
+			return false;
+});
+$('#login_btn').click(function() {
+		$.post("http://tulavcube.ru:25880/login", { username:$("#recipient-name").val(), password:$("#message-text").val() });
+
+		return false;
+});	
+</script>
 </body>
 
 </html>

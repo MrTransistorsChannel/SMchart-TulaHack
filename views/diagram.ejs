@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('./partials/head.ejs') %>
-        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-js.css">
-        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/diagram-js.css">
-        <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-font/css/bpmn.css">
-        <link rel="stylesheet" type="text/css" href="css/bpmn-js-properties-panel/assets/properties-panel.css">
-        <link rel="stylesheet" type="text/css" href="css/bpmn-js-properties-panel/assets/element-templates.css">
-        <link rel="stylesheet" type="text/css" href="css/modeler.css">
-        <link rel="stylesheet" type="text/css" href="css/color-picker.css">
-        <link rel="stylesheet" href="css/minimap.css" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    </head>
+
+<head>
+  <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-js.css">
+    <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/diagram-js.css">
+    <link rel="stylesheet" type="text/css" href="css/bpmn-js/assets/bpmn-font/css/bpmn.css">
+    <link rel="stylesheet" type="text/css" href="css/bpmn-js-properties-panel/assets/properties-panel.css">
+    <link rel="stylesheet" type="text/css" href="css/bpmn-js-properties-panel/assets/element-templates.css">
+    <link rel="stylesheet" type="text/css" href="css/modeler.css">
+    <link rel="stylesheet" type="text/css" href="css/color-picker.css">
+    <link rel="stylesheet" href="css/minimap.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"></script>
+
+      <style>
+        .my-custom-scrollbar {
+          padding-top: 0;
+          position: relative;
+          width: 250px;
+          height: 600px;
+          overflow: auto;
+        }
+        .my-custom-scrollbar li button
+        {
+          text-align: left;
+ 
+        }
+.my-custom-scrollbar li
+{
+  width: 100%;
+ 
+}
+      </style>
+</head>
 
 <body class="modal-open" style="padding-right: 17px;">
   <div class="container-fluid test">
@@ -25,7 +48,7 @@
           </li>
           <li class="nav-item">
             <button type="button" class="nav-link disabled" id="back_actions" href="/">
-                <img src="img/undo_icon.svg" height="30px" alt="">
+              <img src="img/undo_icon.svg" height="30px" alt="">
             </button>
           </li>
           <li class="nav-item">
@@ -39,8 +62,154 @@
   </div>
   <div class="content" id="js-drop-zone">
     <div class="message intro">
+      <div style="display: table-cell; width: 250px; height: 100%;">
+        <h3 style="width: 100%;" class="nav-item">Мои схемы</h3>
+        <ul class="nav nav-pills my-custom-scrollbar my-custom-scrollbar-primary">
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+          <li class="nav-item">
+            <button href="#" class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+              Тест
+            </button>
+          </li>
+        </ul>
+      </div>
       <div class="note">
-        Перенесите BPMN диаграмму с рабочего стола или <a id="js-create-diagram" href>создайте новую</a> для продолжения.
+        Перенесите BPMN диаграмму с рабочего стола или <a id="js-create-diagram" href>создайте новую</a> для
+        продолжения.
       </div>
     </div>
 
@@ -48,64 +217,74 @@
       <div class="note">
         <p>Упс, невозможно отобразить BPMN 2.0 диаграмму.</p>
         <div class="details">
-          <span>cause of the problem</span>
+          <span>Причина</span>
           <pre></pre>
         </div>
       </div>
     </div>
     <div class="canvas" id="js-canvas"></div>
-    <div class="properties-panel-parent" id="js-properties-panel"></div>
   </div>
 
   <ul class="buttons">
     <li>Скачать</li>
-    <li><a id="js-download-diagram" class="btn btn-primary disabled" href title="Скачать как BPMN диаграмму">BPMN диаграмма</a></li>
+    <li><a id="js-download-diagram" class="btn btn-primary disabled" href title="Скачать как BPMN диаграмму">BPMN
+        диаграмма</a></li>
     <li><a id="js-download-svg" class="btn btn-primary disabled" href title="Скачать как SVG">SVG изображение</a></li>
   </ul>
 
   <div class="modal fade" id="login-modal" tabindex="0" aria-labelledby="login-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="nick_name">Авторизация</h5>
-       </div>
-       <div class="modal-body">
-        <form>
-          <div class="form-group">
-           <label for="recipient-name" class="col-form-label">Имя:</label>
-           <input type="text" class="form-control" id="nickname">
-          </div>
-        </form>
-       </div>
-       <div class="modal-footer">
-        <button type="button" id="login" class="btn btn-primary" >Войти</button>
-       </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="nick_name">Авторизация</h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Имя:</label>
+              <input type="text" class="form-control" id="nickname">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="login" class="btn btn-primary">Войти</button>
+        </div>
       </div>
     </div>
-   </div>
-   <script>
-	
-	/*
-	 var results = document.cookie.match(/user=(.+?)(;|$)/);
-	 let check = results[1].length  == 0;
-	 $('#login-modal').modal({
-      backdrop: 'static',
-      keyboard: false
-    })
-	 if(check == true){
+  </div>
+  <script>
 
-	
-		$('#login-modal').modal("show")
-		$("#login").click(function() {
-				$.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });
-				document.cookie = "user="+$('#nickname').val(); 
+var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+var ps = new PerfectScrollbar(myCustomScrollbar);
 
-		});
-	 }
+var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
 
-*/
+myCustomScrollbar.onscroll = function () {
+  scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+}
+
+    /*
+     var results = document.cookie.match(/user=(.+?)(;|$)/);
+     let check = results[1].length  == 0;
+     $('#login-modal').modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+     if(check == true){
+  
+  	
+      $('#login-modal').modal("show")
+      $("#login").click(function() {
+          $.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });
+          document.cookie = "user="+$('#nickname').val(); 
+  
+      });
+     }
+  
+  */
   </script>
   <script src="js/modeler.js"></script>
-  
+
 </body>
+
 </html>

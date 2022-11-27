@@ -66,7 +66,6 @@ def login():
         user = [x for x in users if x.username == request.form.get('username')]
 
         if len(user) > 0 and user[0].password == request.form.get('password'):
-            print('username' in session)
             session['username'] = user[0].username
             session.modified = True
 

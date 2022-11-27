@@ -31,16 +31,19 @@
       }
       .btn {
         letter-spacing: normal !important;
+        display: flex !important;
       }
 
       .my-custom-scrollbar li button {
         text-align: left;
-
       }
 
       .my-custom-scrollbar li {
         width: 100%;
+      }
 
+      .nav_my{
+        gap: 20px;
       }
     </style>
 </head>
@@ -49,22 +52,16 @@
   <div class="container-fluid test">
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav nav_my mr-auto">
           <li class="nav-item">
             <a class="navbar-brand" href="/">
               <img src="img/logo.svg" height="30px" alt="Gravity" class="logo">
             </a>
           </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link disabled" id="back_actions" href="/">
-              <img src="img/undo_icon.svg" height="30px" alt="">
-            </button>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link disabled" id="undo_actions" href="/">
-              <img src="img/redo_icon.svg" height="30px" alt="">
-            </button>
-          </li>
+          <li class="nav-item"><a id="js-download-diagram" class="btn btn-primary disabled" href title="Скачать как BPMN диаграмму">
+            BPMN диаграмма</a></li>
+          <li class="nav-item"><a id="js-download-svg" class="btn btn-primary disabled" href title="Скачать как SVG">SVG изображение</a></li>
+          <li class="nav-item"><a id="js-save-diagram" class="btn btn-primary disabled" href="#">Сохранить диаграмму</a></li>
         </ul>
       </nav>
     </div>
@@ -91,76 +88,10 @@
         </div>
       </div>
     </div>
-    <div class="canvas" id="js-canvas"></div>
-  </div>
-
-  <ul class="buttons">
-    <li>Скачать</li>
-    <li><a id="js-download-diagram" class="btn btn-primary disabled" href title="Скачать как BPMN диаграмму">BPMN
-        диаграмма</a></li>
-    <li><a id="js-download-svg" class="btn btn-primary disabled" href title="Скачать как SVG">SVG изображение</a></li>
-  </ul>
-
-  <div class="modal fade" id="login-modal" tabindex="0" aria-labelledby="login-modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="nick_name">Авторизация</h5>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Имя:</label>
-              <input type="text" class="form-control" id="nickname">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="login" class="btn btn-primary">Войти</button>
-        </div>
-      </div>
+    <div class="canvas" id="js-canvas">
     </div>
   </div>
   <script>
-
-    $.ajaxSetup({
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-    });
-    $.ajax({
-      method: "GET",
-      url: "http://tulavcube.ru:25880/diagrams",
-    })
-      .done(function (msg) {
-        const list = document.getElementById("schem-list");
-        msg.diagrams.forEach(element => {
-          list.innerHTML += ` 
-          <li class="nav-item">
-            <button class="btn btn-outline-primary" id="${element}" type="button" style="width: 100%;" onclick="getDiagram ('${element}')" aria-current="page">
-              ${element}
-            </button>
-          </li>`
-        });
-      })
-      .fail(function () {
-        document.location.href = "http://localhost:8081";
-
-
-      });
-	function getDiagram(id){
-		//$.get( "http://tulavcube.ru:25880/diagrams", { name: id  } );
-		$.ajax({
-  method: "GET",
-  url: "http://tulavcube.ru:25880/diagrams",
-  data: { name: id  },
-	})
-  .done(function( msg ) {
-	console.log(msg)
-  });
-		return false;
-
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
 
     var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
@@ -168,26 +99,6 @@
     myCustomScrollbar.onscroll = function () {
       scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
     }
-
-    /*
-     var results = document.cookie.match(/user=(.+?)(;|$)/);
-     let check = results[1].length  == 0;
-     $('#login-modal').modal({
-        backdrop: 'static',
-        keyboard: false
-      })
-     if(check == true){
-  
-  	
-      $('#login-modal').modal("show")
-      $("#login").click(function() {
-          $.post("http://tulavcube.ru:25880/login", { login: $('#nickname').val() });
-          document.cookie = "user="+$('#nickname').val(); 
-  
-      });
-     }
-  
-  */
   </script>
   <script src="js/modeler.js"></script>
 

@@ -136,7 +136,7 @@
         msg.diagrams.forEach(element => {
           list.innerHTML += ` 
           <li class="nav-item">
-            <button class="btn btn-outline-primary" style="width: 100%;" aria-current="page">
+            <button class="btn btn-outline-primary" id="${element}" type="button" style="width: 100%;" onclick="getDiagram ('${element}')" aria-current="page">
               ${element}
             </button>
           </li>`
@@ -147,8 +147,12 @@
 
 
       });
+	function getDiagram(id){
+		$.get( "http://tulavcube.ru:25880/diagrams", { name: id  } );
+		return false;
+
+	}
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
-    var ps = new PerfectScrollbar(myCustomScrollbar);
 
     var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
 

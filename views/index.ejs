@@ -407,7 +407,7 @@
   
 		  $.ajax({
   method: "GET",
-  url: "http://tulavcube.ru:25880/login",
+  url: "https://tulavcube.ru:25880/login",
 	})
   .done(function( msg ) {
 	$("#user_name").show(200);
@@ -428,7 +428,7 @@
     $('#login_btn').click(function () {
 		$.ajax({
   method: "POST",
-  url: "http://tulavcube.ru:25880/login",
+  url: "https://tulavcube.ru:25880/login",
   data: { username: $("#recipient-name").val(),
             password: $("#message-text").val()},
 	})

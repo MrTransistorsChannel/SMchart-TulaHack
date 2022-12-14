@@ -2,9 +2,14 @@ import os
 
 from flask import Flask, request, Response, jsonify, session, g
 
+context = ('cert.pem', 'privkey.pem')
+
 app = Flask(__name__)
+app.debug = False
+
 app.secret_key = 'bd9AHE3qPO4KEbXe19MTYunuWUwV6L3I75Mp2K0sNHNuJaO7gLL8pGUdPn6hcBgn'
-app.config['SESSION_COOKIE_SAMESITE'] = "None"
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
 
 responseWithCredentials = Response()  # Sample response with cross-domain cookies
 responseWithCredentials.headers['Access-Control-Allow-Credentials'] = 'true'
@@ -96,6 +101,7 @@ def diagram_handler():
             with open(diagramStorage + request.args.get('name') + '.bpmn', 'r') as diagram:
                 diagramXML = diagram.read()
                 resp = responseWithCredentials
+                print(diagramXML)
                 resp.data = diagramXML
                 responseWithCredentials.headers['Access-Control-Allow-Origin'] = request.origin
                 resp.status = 200
@@ -112,6 +118,7 @@ def diagram_handler():
     elif request.method == 'POST':  # POST requests handle file saves
         diagramName = request.form.get('name')
         diagramXML = request.form.get('content')
+        print(request.form.get('content'))
 
         diagramPath = diagramStorage + diagramName + '.bpmn'
 
@@ -138,4 +145,4 @@ def diagram_handler():
             return resp
 
 
-app.run()
+app.run(host='0.0.0.0', port='25880', ssl_context=context)

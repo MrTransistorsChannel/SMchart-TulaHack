@@ -1,0 +1,34 @@
+#schem-list{
+    display: block;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  .my-custom-scrollbar {
+    padding-top: 0;
+    position: relative;
+    width: 250px;
+    height: 100%;
+    overflow: auto;
+  }
+  .btn {
+    letter-spacing: normal !important;
+    display: flex !important;
+  }
+
+  .my-custom-scrollbar li button {
+    text-align: left;
+  }
+
+  .my-custom-scrollbar li {
+    width: 100%;
+  }
+
+  .bodyFlex{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav_my{
+    gap: 5px;
+  }

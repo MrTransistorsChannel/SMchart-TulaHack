@@ -16,7 +16,6 @@
                     <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="login_reg">
                         Войти
                     </a>
-						  
 						  <a href="diagram" id="user_name">
 
 						  </a>
@@ -413,7 +412,7 @@
 	$("#user_name").show(200);
 	$("#start-diagram").show(200);
 
-    $("#user_name").html(msg);
+    $("#user_name").html('Добро пожаловать, ' + msg + '!');
 	 $('#login_reg').hide();
   })
   .fail(function() {

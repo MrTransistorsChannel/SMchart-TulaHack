@@ -11,44 +11,13 @@
     <link rel="stylesheet" type="text/css" href="css/modeler.css">
     <link rel="stylesheet" type="text/css" href="css/color-picker.css">
     <link rel="stylesheet" type="text/css" href="css/minimap.css" />
+    <link rel="stylesheet" type="text/css" href="css/diagram.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"></script>
-
-    <style>
-      #schem-list{
-        display: block;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-      }
-      .my-custom-scrollbar {
-        padding-top: 0;
-        position: relative;
-        width: 250px;
-        height: 100%;
-        overflow: auto;
-      }
-      .btn {
-        letter-spacing: normal !important;
-        display: flex !important;
-      }
-
-      .my-custom-scrollbar li button {
-        text-align: left;
-      }
-
-      .my-custom-scrollbar li {
-        width: 100%;
-      }
-
-      .nav_my{
-        gap: 20px;
-      }
-    </style>
 </head>
 
-<body class="modal-open" style="padding-right: 17px;">
+<body class="bodyFlex">
   <div class="container-fluid test">
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light bg-light col-sm">
@@ -75,7 +44,7 @@
         </ul>
       </div>
       <div class="note">
-        Перенесите BPMN диаграмму с рабочего стола или <a id="js-create-diagram" href>создайте новую</a> для
+        Перенесите BPMN диаграмму с рабочего стола или <a data-toggle="modal" data-target="#diagramModal" href>создайте новую</a> для
         продолжения.
       </div>
     </div>
@@ -91,7 +60,37 @@
     <div class="canvas" id="js-canvas">
     </div>
   </div>
+
+  <div class="modal fade" id="diagramModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Создание диаграммы</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="diagram-name" class="col-form-label">Имя</label>
+                <input type="text" class="form-control" id="diagram-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            <button type="button" class="btn btn-primary" id="js-create-diagram">Создать диаграмму</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
   <script>
+    function ctrlButton() {
+      document.getElementById("js-create-diagram").disabled = this.value.trim().length === 0;
+    }
+
+    document.getElementById("diagram-name").addEventListener('input', ctrlButton, false);
+    ctrlButton.call(document.getElementById("diagram-name"));
+
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
 
     var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');

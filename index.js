@@ -2,15 +2,6 @@ var express = require('express');
 const path = require('path');
 var morgan = require('morgan')
 
-
-//const mariadb = require('mariadb');
-//const pool = mariadb.createPool({
-//    host: 'remotemysql.com',
-//    user: 'xxFhi3fR3w',
-//    password: 'ASTO8UWANW',
-//    connectionLimit: 1
-//});
-
 var app = express();
 const createPath = (page) => path.resolve(__dirname, 'views', `${page}.ejs`)
 

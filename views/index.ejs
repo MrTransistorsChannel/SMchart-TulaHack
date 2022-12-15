@@ -16,12 +16,11 @@
                     <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="login_reg">
                         Войти
                     </a>
-						  <a href="diagram" id="user_name">
-
-						  </a>
-                    <!---<a href="" type="button" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
+					<a href="diagram" id="user_name"></a>
+                    <a href="" type="button" id="logout_user">Выйти</a>
+                    <a href="" type="button" id="reg_button" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
                         Зарегистрироваться
-                    </a>-->
+                    </a>
                 </div>
             </div>
         </div>
@@ -41,8 +40,7 @@
 
                         </p>
                         <a class="offer-cont__btn btn" id="start-diagram" href="diagram">Начать</a>
-								<a class="offer-cont__btn btn" id="start-modal" href=""  type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Начать</a>
-
+						<a class="offer-cont__btn btn" id="start-modal" href="" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Начать</a>
                     </div>
                 </div>
                 <div class="col-md-6 be-static vh-dependent">
@@ -234,10 +232,6 @@
                         <img src="img/Group 3.png" alt="">
                     </a>
                 </div>
-
-         
-
-               
             </div>
         </div>
     </div>
@@ -355,7 +349,7 @@
             </div>
         </div>
     </div>
-</div><!--
+</div>
 	 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
@@ -365,22 +359,22 @@
 			 <div class="modal-body">
 				<form>
 				  <div class="form-group">
-					 <label for="recipient-name" class="col-form-label">Email:</label>
-					 <input type="text" class="form-control" id="recipient-name">
+					 <label for="reg-name" class="col-form-label">Логин:</label>
+					 <input type="text" class="form-control" id="reg-name">
 				  </div>
 				  <div class="form-group">
-					 <label for="message-text" class="col-form-label">Пароль:</label>
-					 <input type="password" class="form-control" id="message-text"></input>
+					 <label for="reg-password" class="col-form-label">Пароль:</label>
+					 <input type="password" class="form-control" id="reg-password"></input>
 				  </div>
 				</form>
 			 </div>
 			 <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-primary">Зарегистрироваться</button>
+				<button type="button" id="reg" class="btn btn-primary">Зарегистрироваться</button>
 			 </div>
 		  </div>
 		</div>
-	 </div>-->
+	 </div>
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
@@ -391,11 +385,12 @@
 	}
 </style>
 <script>
-	 
-	 $("#user_name").hide();
-	 $('#login_reg').hide();
-	 $("#start-diagram").hide();
-	 $('#start-modal').hide();
+	$("#user_name").hide();
+	$('#login_reg').hide();
+    $('#logout_user').hide();
+	$("#start-diagram").hide();
+	$('#start-modal').hide();
+    $("#reg_button").hide();
     $.ajaxSetup({
         crossDomain: true,
         xhrFields: {
@@ -403,44 +398,69 @@
         },
     });
     document.addEventListener("DOMContentLoaded", () => {
-  
-		  $.ajax({
-  method: "GET",
-  url: "https://tulavcube.ru:25880/login",
-	})
-  .done(function( msg ) {
-	$("#user_name").show(200);
-	$("#start-diagram").show(200);
+        $.ajax({
+            method: "GET",
+            url: "https://tulavcube.ru:25880/login",
+	    })
+        .done(function( msg ) {
+	        $("#user_name").show(200);
+	        $("#start-diagram").show(200);
+            $('#logout_user').show(200);
 
-    $("#user_name").html('Добро пожаловать, ' + msg + '!');
-	 $('#login_reg').hide();
-  })
-  .fail(function() {
-	$("#login_reg").show(200);
-	$('#start-modal').show(200);
-
-
-  });
-
+            $("#user_name").html('Добро пожаловать, ' + msg + '!');
+	        $('#login_reg').hide();
+            $("#reg_button").hide();
+            })
+        .fail(function() {
+	        $("#login_reg").show(200);
+            $("#reg_button").show(200);
+	        $('#start-modal').show(200);
+            });
         return false;
     });
+
+    $('#logout_user').click(function () {
+		$.ajax({
+            method: "POST",
+            url: "https://tulavcube.ru:25880/logout",
+	    })
+        .done(function( msg ) {
+	        location.reload() 
+        })
+        return false;
+    });
+
+    $('#reg').click(function () {
+		$.ajax({
+            method: "POST",
+            url: "https://tulavcube.ru:25880/signup",
+            data: { username: $("#reg-name").val(),
+            password: $("#reg-password").val()},
+	    })
+        .done(function( msg ) {
+	        location.reload() 
+        })
+        .fail(function ( msg ) {
+            $("#reg-name").addClass('errorpas')
+        })
+        return false;
+    });
+
     $('#login_btn').click(function () {
 		$.ajax({
-  method: "POST",
-  url: "https://tulavcube.ru:25880/login",
-  data: { username: $("#recipient-name").val(),
+            method: "POST",
+            url: "https://tulavcube.ru:25880/login",
+            data: { username: $("#recipient-name").val(),
             password: $("#message-text").val()},
-	})
-  .done(function( msg ) {
-	location.reload() 
-  })
-  .fail(function() {
-//	$("#exampleModal").modal('hide')
-	//$("#label-password").html("Пароль неверный");
-	$("#message-text").addClass('errorpas')
- });
-       
-
+	    })
+        .done(function( msg ) {
+	        location.reload() 
+        })
+        .fail(function() {
+            //	$("#exampleModal").modal('hide')
+	        //$("#label-password").html("Пароль неверный");
+	        $("#message-text").addClass('errorpas')
+        });
         return false;
     });
 </script>

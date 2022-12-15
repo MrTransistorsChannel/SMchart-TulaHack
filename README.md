@@ -13,6 +13,6 @@ This branch is for the backend server, which is written in Python using Flask fr
 Navigate to the project directory
 Run the following command
 ```
-python3 -u -m flask run --host=0.0.0.0 --port=25880
+python3 app.py
 ```
 This will start a Flask server on tour local machine, listening at port 25880
